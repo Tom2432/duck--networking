@@ -1,0 +1,288 @@
+/*
+====================================
+1. BASE STYLES & RESETS
+====================================
+*/
+:root {
+    /* Color Palette */
+    --color-primary: #007bff;        /* Blue for links, buttons, and highlights */
+    --color-secondary: #6c757d;      /* Gray for subtle text/borders */
+    --color-background: #f8f9fa;     /* Light gray page background */
+    --color-surface: #ffffff;        /* White card/content background */
+    --color-text: #212529;           /* Dark text */
+    --color-heading: #0d47a1;        /* Darker blue for headings */
+    --color-code-bg: #e9ecef;        /* Light gray for code/pre blocks */
+
+    /* Typography */
+    --font-sans: 'Arial', sans-serif;
+    --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+/* Confine content to a readable width */
+body > * {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+/*
+====================================
+2. TYPOGRAPHY & HEADINGS
+====================================
+*/
+h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: var(--color-heading);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    border-left: 5px solid var(--color-primary);
+    padding-left: 10px;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+p, ul, ol, blockquote {
+    margin-bottom: 1em;
+}
+
+/*
+====================================
+3. LINKS, BUTTONS, & LISTS
+====================================
+*/
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+ul, ol {
+    padding-left: 25px;
+}
+
+ul li, ol li {
+    margin-bottom: 0.5em;
+}
+
+/* Blockquotes for Real-World Explanations */
+blockquote {
+    border-left: 4px solid var(--color-secondary);
+    padding: 10px 20px;
+    background-color: var(--color-surface);
+    margin: 20px 0;
+    font-style: italic;
+}
+
+blockquote p {
+    margin-bottom: 0;
+}
+
+/*
+====================================
+4. TABLES & DATA
+====================================
+*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    background-color: var(--color-surface);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+thead th {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Subtle stripe for readability */
+}
+
+tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/*
+====================================
+5. CODE & DIAGRAMS
+====================================
+*/
+code, pre {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+/* Inline code styling */
+code {
+    background-color: var(--color-code-bg);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Pre-formatted text for ASCII diagrams */
+pre {
+    background-color: var(--color-code-bg);
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto; /* Ensures diagrams don't break layout */
+    border: 1px solid var(--color-secondary);
+    margin: 20px 0;
+}
+
+/*
+====================================
+6. FOOTER
+====================================
+*/
+footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #ccc;
+    margin-top: 40px;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/*
+====================================
+7. UTILITIES / SECTION SPACING
+====================================
+*/
+section {
+    padding-top: 30px;
+}
+
+/* Add a line to visually separate major sections */
+section + section {
+    border-top: 1px dashed var(--color-secondary);
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    th, td {
+        padding: 10px;
+        /* Optionally make table responsive by stacking rows/columns here */
+    }
+}
+
+
+
+
+
+
+
+/*
+====================================
+9. TWO-COLUMN LAYOUT & SIDEBAR STYLES
+====================================
+*/
+
+/* Container setup for Flexbox layout */
+#main-layout-container {
+    max-width: 1200px; /* Increase max-width to accommodate the sidebar */
+    margin: 20px auto;
+    display: flex; /* Enable Flexbox */
+    gap: 30px; /* Space between sidebar and main content */
+    align-items: flex-start; /* Align items to the top */
+    padding: 0 20px;
+}
+
+/* Sidebar styling for placement */
+#sidebar-toc {
+    flex-shrink: 0; /* Prevents sidebar from shrinking */
+    width: 250px; /* Fixed width for the sidebar */
+    position: sticky; /* Makes the sidebar stay in place while scrolling */
+    top: 80px; /* Position it below the sticky header */
+    padding: 15px 0;
+    
+    /* Ensure only the sidebar is visible before JS loads */
+    min-height: 100vh; 
+}
+
+/* Main Content Area styling */
+#main-content-area {
+    flex-grow: 1; /* Allows content area to take up remaining space */
+    min-width: 0; /* Required for flexible content within flex container */
+    padding-right: 20px; /* Spacing */
+    background-color: var(--color-surface); /* White background for the article */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Adjust TOC styling to fit the sidebar */
+#toc-navigation {
+    margin: 0; /* Remove default margin */
+    padding: 10px;
+    border: none;
+    background-color: transparent; /* Makes the TOC blend into the sidebar */
+}
+
+/* Media Query for Mobile/Tablet: Stack the columns */
+@media (max-width: 992px) {
+    #main-layout-container {
+        flex-direction: column; /* Stacks the sidebar above the content */
+        gap: 0;
+    }
+
+    #sidebar-toc {
+        width: 100%; /* Sidebar takes full width */
+        position: static; /* Remove sticky behavior on small screens */
+        padding: 0 20px;
+        /* TOC visibility on mobile: You might want to hide/collapse this */
+    }
+}

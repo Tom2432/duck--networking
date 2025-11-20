@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Networking for beginner-friendly</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="index.webp" 
+  <meta name="description" content="Comprehensive, beginner-friendly networking tutorial covering types of networks, topologies, OSI & TCP/IP models, IP addressing, devices, protocols, routing and troubleshooting." />
+    </head>
+<body>
+    <header>
+        <h1>🌐 Introduction to Computer Networking</h1>
+        <p>Computer **networking** is the practice of connecting two or more computing devices (like computers, servers, printers, and smartphones) together to allow them to share resources and exchange data. In simple terms, it's how devices talk to each other.</p>
+    </header>
+
+    <section id="what-is-networking">
+        <h2>What is Networking?</h2>
+        <p>At its core, networking exists for two main reasons:</p>
+        <ul>
+            <li>**Resource Sharing:** Sharing hardware (e.g., a single printer for an entire office) and software (e.g., shared files and applications).</li>
+            <li>**Communication:** Enabling users and applications to exchange information (e.g., sending an email, browsing a website, or video conferencing).</li>
+        </ul>
+        <blockquote>
+            <p><strong>Real-World Explanation:</strong> Think of a network like a city's road system. Each device is a building, and the cables/wireless signals are the roads connecting them. Data are the cars traveling on these roads to reach their destination.</p>
+        </blockquote>
+    </section>
+
+    <section id="network-types">
+        <h1>🗺️ Types of Networks</h1>
+        <p>Networks are generally categorized by their **geographical size** and **scale**.</p>
+        <nav class="hidden md:flex space-x-8">
+        <h3>1. Personal Area Network (PAN)</h3>
+        <ul>
+            <li><strong>Description:</strong> The smallest and most personal type of network. It connects devices centered around a single person, typically within a range of about 10 meters (33 feet).</li>
+            <li><strong>Examples:</strong> Connecting your **Bluetooth** headset to your phone, syncing a smart watch with a laptop, or connecting devices via a USB cable.</li>
+        </ul>
+         <h3>2. Local Area Network (LAN)</h3>
+        
+        <ul>
+            <li><strong>Description:</strong> A network that connects devices in a **small, defined geographical area**. This could be a home, a small office, or a single building. LANs are characterized by high data transfer rates.</li>
+            <li><strong>Examples:</strong> Your **home Wi-Fi network**, or all the computers in a school computer lab connected together.</li>
+        </ul>
+        <pre>
+LAN Example (ASCII Diagram)
+Client PC <-> Switch <-> Server
+        </pre>
+ <h3> 3. Metropolitan Area Network (MAN)</h3>
+        <ul>
+            <li><strong>Description:</strong> A network that spans a **city or a large campus**. It's larger than a LAN but smaller than a WAN. MANs often connect multiple LANs together.</li>
+            <li><strong>Examples:</strong> A city-wide Wi-Fi network, or the network connecting all branches of a bank within one metropolitan area.</li>
+        </ul>
+
+        <h3>4. Wide Area Network (WAN)</h3>
+        <ul>
+            <li><strong>Description:</strong> A network that covers a **large geographical area**, often crossing state, national, or even continental boundaries. WANs use public networks (like the telephone system) or dedicated private lines.</li>
+            <li><strong>Examples:</strong> The most prominent example is the **Internet** itself. Corporate networks connecting headquarters to remote branch offices across the country.</li>
+        </ul>
+    </section>
+
+    <section id="topologies">
+        <h1>🕸️ Network Topologies</h1>
+        <p>**Topology** refers to the physical or logical arrangement of connected devices in a network.</p>
+
+        <h3>1. Bus Topology</h3>
+        <ul>
+            <li><strong>Arrangement:</strong> All devices are connected to a single central cable, called the **backbone** or segment.</li>
+            <li><strong>Pros:</strong> Easy to install, less cabling needed.</li>
+            <li><strong>Cons:</strong> A break in the central cable shuts down the entire network. Difficult to troubleshoot.</li>
+        </ul>
+
+        <h3>2. Star Topology</h3>
+        <ul>
+            <li><strong>Arrangement:</strong> Every device is individually connected to a **central device**, typically a **switch** or **hub**.</li>
+            <li><strong>Pros:</strong> Failure of one device/cable only affects that device. Easy to add new devices.</li>
+            <li><strong>Cons:</strong> Requires more cable than Bus. If the central device fails, the entire network goes down.</li>
+        </ul>
+        <pre>
+Star Topology (ASCII Diagram)
+PC1 <-> Switch <-> PC2
+PC3 <-> Switch <-> PC4
+        </pre>
+
+        <h3>3. Ring Topology</h3>
+        <ul>
+            <li><strong>Arrangement:</strong> Devices are connected to form a single, **closed loop**. Data travels in one direction around the ring.</li>
+            <li><strong>Pros:</strong> Data flows efficiently at high speed.</li>
+            <li><strong>Cons:</strong> A single break in the cable or failure of one device can disrupt the entire network.</li>
+        </ul>
+
+        <h3>4. Mesh Topology</h3>
+        <ul>
+            <li><strong>Arrangement:</strong> Every device is connected to **every other device** on the network.</li>
+            <li><strong>Pros:</strong> **Highly fault-tolerant** (data has many alternative paths). Very robust.</li>
+            <li><strong>Cons:</strong> Extremely expensive and complex to install and maintain due to the vast number of connections required.</li>
+        </ul>
+    </section>
+
+    <section id="osi-model">
+        <h1>🚦 The OSI Model</h1>
+        <p>The **Open Systems Interconnection (OSI)** model is a conceptual framework used to describe the functions of a networking or telecommunication system. It divides the communication process into **seven distinct layers**. 
+
+[Image of the 7 layers of the OSI model]
+</p>
+
+        <h2>Understanding the Layers (from Top to Bottom)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Name</th>
+                    <th>Function / Purpose</th>
+                    <th>Example Protocols</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7</td>
+                    <td>**Application**</td>
+                    <td>Provides the interface between the application and the network. <strong>What the user sees.</strong></td>
+                    <td>HTTP, FTP, SMTP, DNS</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>**Presentation**</td>
+                    <td>Handles data formatting, encryption, and compression. Ensures data is readable by the receiving application.</td>
+                    <td>JPEG, MPEG, TLS/SSL</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>**Session**</td>
+                    <td>Manages the beginning, maintenance, and ending of a connection (a "session") between two devices.</td>
+                    <td>NetBIOS, RPC</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>**Transport**</td>
+                    <td>Manages segment delivery and error checking. Responsible for reliable data transfer.</td>
+                    <td><strong>TCP</strong>, <strong>UDP</strong></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>**Network**</td>
+                    <td>Handles <strong>logical addressing (IP addresses)</strong> and <strong>routing</strong> of data packets across different networks.</td>
+                    <td><strong>IP</strong>, ICMP</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>**Data Link**</td>
+                    <td>Handles physical addressing (<strong>MAC addresses</strong>) and controls access to the medium (e.g., Ethernet).</td>
+                    <td>Ethernet, ARP</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>**Physical**</td>
+                    <td>Transmits raw binary data (bits) over the communication medium (cables, airwaves). <strong>The actual hardware.</strong></td>
+                    <td>Cables, NICs, Hubs</td>
+                </tr>
+            </tbody>
+        </table>
+        <blockquote>
+            <p><strong>Analogy: Sending a Letter</strong></p>
+            <ul>
+                <li><strong>Application (7):</strong> You write the letter (the data).</li>
+                <li><strong>Presentation (6):</strong> You format the letter and choose the language.</li>
+                <li><strong>Session (5):</strong> You decide if you're sending it certified or standard.</li>
+                <li><strong>Transport (4):</strong> The postal service ensures the pages stay together and arrive in the correct order.</li>
+                <li><strong>Network (3):</strong> The postal service adds the destination <strong>ZIP code</strong> (IP address) for routing.</li>
+                <li><strong>Data Link (2):</strong> The post office uses the full street address (MAC address) for final delivery.</li>
+                <li><strong>Physical (1):</strong> The letter is placed in the mailbox and physically transported.</li>
+            </ul>
+        </blockquote>
+    </section>
+
+    <section id="tcp-ip-model">
+        <h1>💻 The TCP/IP Model</h1>
+        <p>The **Transmission Control Protocol/Internet Protocol (TCP/IP)** model is a practical and widely used model that defines how data should be exchanged over the Internet. It is generally considered a simplified version of the OSI model, collapsing the seven layers into four or five.</p>
+
+        <h2>TCP/IP Layers (Four-Layer Model)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>TCP/IP Layer</th>
+                    <th>Corresponding OSI Layers</th>
+                    <th>Core Function</th>
+                    <th>Example Protocols</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**Application**</td>
+                    <td>Application, Presentation, Session</td>
+                    <td>Provides services to the application software.</td>
+                    <td>**HTTP**, **DNS**, **FTP**</td>
+                </tr>
+                <tr>
+                    <td>**Transport**</td>
+                    <td>Transport</td>
+                    <td>Manages end-to-end communication and reliability.</td>
+                    <td>**TCP**, **UDP**</td>
+                </tr>
+                <tr>
+                    <td>**Internet (or Network)**</td>
+                    <td>Network</td>
+                    <td>Handles logical addressing and routing across networks.</td>
+                    <td>**IP**, ICMP</td>
+                </tr>
+                <tr>
+                    <td>**Network Interface (or Link)**</td>
+                    <td>Data Link, Physical</td>
+                    <td>Handles the physical connection and data transmission medium.</td>
+                    <td>Ethernet, Wi-Fi, ARP</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Key Protocols: TCP vs. UDP</h3>
+        <ul>
+            <li>**TCP (Transmission Control Protocol):** A **connection-oriented** and **reliable** protocol. It ensures that all data packets arrive at the destination and in the correct order.
+                <ul>
+                    <li><strong>Used for:</strong> Web browsing (HTTP/HTTPS), Email (SMTP, POP3, IMAP), File Transfer (FTP).</li>
+                </ul>
+            </li>
+            <li>**UDP (User Datagram Protocol):** A **connectionless** and **unreliable** protocol. It sends data without first establishing a connection or ensuring receipt. It is faster because it has less overhead.
+                <ul>
+                    <li><strong>Used for:</strong> Live streaming, VoIP (Voice over IP), DNS lookups, online gaming.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="ip-addressing">
+        <h1>🔢 IP Addressing and Subnetting</h1>
+        <p>An **Internet Protocol (IP) address** is a numerical label assigned to every device participating in a computer network that uses the Internet Protocol for communication. It serves two main functions: **host identification** and **location addressing**.</p>
+
+        <h3>IPv4 (Internet Protocol Version 4)</h3>
+        <ul>
+            <li><strong>Format:</strong> A 32-bit address represented in **dotted-decimal notation** (e.g., <code>192.168.1.10</code>).</li>
+            <li><strong>Structure:</strong> Divided into four octets (8-bit sections) separated by periods.</li>
+            <li><strong>Total Addresses:</strong> Offers approximately $4.3$ billion unique addresses, which are rapidly depleting.</li>
+        </ul>
+
+        <h2>IPv4 Classes</h2>
+        <p>The original system categorized IPv4 addresses into classes based on the first octet, primarily defining the division between the **Network** and **Host** portions of the address.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>First Octet Range</th>
+                    <th>Default Subnet Mask</th>
+                    <th>Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**A**</td>
+                    <td>1 - 126</td>
+                    <td>255.0.0.0</td>
+                    <td>Large networks (few networks, many hosts)</td>
+                </tr>
+                <tr>
+                    <td>**B**</td>
+                    <td>128 - 191</td>
+                    <td>255.255.0.0</td>
+                    <td>Medium-sized networks</td>
+                </tr>
+                <tr>
+                    <td>**C**</td>
+                    <td>192 - 223</td>
+                    <td>255.255.255.0</td>
+                    <td>Small networks (many networks, few hosts)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Subnetting</h3>
+        <p>**Subnetting** is the practice of dividing a single large network into smaller, more manageable sub-networks, or **subnets**.</p>
+        <ul>
+            <li><strong>Purpose:</strong>
+                <ol>
+                    <li>**Efficiency:** Reduces network congestion by localizing traffic.</li>
+                    <li>**Organization:** Makes network management easier.</li>
+                    <li>**Security:** Creates boundaries to control data flow.</li>
+                </ol>
+            </li>
+            <li><strong>How it Works:</strong> It borrows bits from the **host portion** of an IP address and uses those bits to create new **network IDs** (subnets). The **Subnet Mask** is used to determine which part of the IP address is the Network ID and which part is the Host ID.</li>
+        </ul>
+        <blockquote>
+            <p><strong>Example:</strong> In the address <strong><code>192.168.10.5 / 24</code></strong></p>
+            <ul>
+                <li><code>192.168.10.5</code> is the **IP Address**.</li>
+                <li><code>/24</code> is the **CIDR notation** (Classless Inter-Domain Routing), which means the first 24 bits are the Network ID.</li>
+                <li>The Network ID is **<code>192.168.10.0</code>**.</li>
+                <li>The Host ID is **<code>5</code>**.</li>
+            </ul>
+        </blockquote>
+
+        <h3>IPv6 (Internet Protocol Version 6)</h3>
+        <ul>
+            <li><strong>Format:</strong> A 128-bit address represented in **hexadecimal notation** (e.g., <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>).</li>
+            <li><strong>Structure:</strong> Divided into eight 16-bit blocks (quartets) separated by colons.</li>
+            <li><strong>Total Addresses:</strong> Offers a virtually inexhaustible supply of addresses (3.4 &times; 10<sup>38</sup>), solving the IPv4 depletion issue.</li>
+        </ul>
+    </section>
+
+    <section id="network-devices">
+        <h1>🛠️ Network Devices: The Building Blocks</h1>
+        <p>These are the primary hardware components that form a network.</p>
+
+        <h3>Hub</h3>
+        <ul>
+            <li><strong>Function:</strong> A basic network device that connects multiple devices. It operates at **Layer 1 (Physical)** of the OSI model.</li>
+            <li><strong>How it Works:</strong> A Hub is a **dumb device**. When it receives a signal on one port, it simply **repeats** (broadcasts) the signal out to **all other ports**. This creates a lot of unnecessary traffic (network collisions).</li>
+        </ul>
+
+        <h3>Switch</h3>
+        <ul>
+            <li><strong>Function:</strong> Connects multiple devices and is much smarter than a hub. It operates at **Layer 2 (Data Link)**.</li>
+            <li><strong>How it Works:</strong> A Switch maintains a **MAC Address Table** (or Content Addressable Memory - CAM table). When data comes in, the switch reads the destination MAC address and forwards the data *only* to the port where the destination device is connected. This makes it efficient and reduces collisions. 
+
+[Image of a switch connecting multiple computers]
+</li>
+        </ul>
+
+        <h3>Router</h3>
+        <ul>
+            <li><strong>Function:</strong> Connects **different networks** together. It operates at **Layer 3 (Network)**.</li>
+            <li><strong>How it Works:</strong> A Router uses **IP addresses** to determine the best path (route) for data packets to travel between networks (e.g., between your home network and the Internet). **Routers route; switches switch.**</li>
+        </ul>
+
+        <h3>Access Point (AP)</h3>
+        <ul>
+            <li><strong>Function:</strong> Creates a **Wireless Local Area Network (WLAN)**.</li>
+            <li><strong>How it Works:</strong> An AP connects to a wired network (like a switch) and converts the wired signal into a radio signal, allowing wireless devices (laptops, phones) to connect to the network.</li>
+        </ul>
+    </section>
+
+    <section id="application-protocols">
+        <h1>💬 Essential Application Protocols</h1>
+        <p>These protocols operate mostly at the **Application Layer (OSI Layer 7)** and provide services to the user.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Protocol</th>
+                    <th>Full Name</th>
+                    <th>Purpose</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**DHCP**</td>
+                    <td>Dynamic Host Configuration Protocol</td>
+                    <td>Automatically assigns **IP addresses**, subnet masks, and gateway info to devices joining a network.</td>
+                    <td>When your phone joins a Wi-Fi, it gets an IP address from the DHCP server.</td>
+                </tr>
+                <tr>
+                    <td>**DNS**</td>
+                    <td>Domain Name System</td>
+                    <td>Translates human-readable **Domain Names** (e.g., <code>www.google.com</code>) into computer-readable **IP Addresses** (e.g., <code>142.250.67.164</code>).</td>
+                    <td>You type a name; DNS finds the address.</td>
+                </tr>
+                <tr>
+                    <td>**FTP**</td>
+                    <td>File Transfer Protocol</td>
+                    <td>A standard protocol used to transfer files between a client and a server.</td>
+                    <td>Uploading website files to a web server.</td>
+                </tr>
+                <tr>
+                    <td>**HTTP**</td>
+                    <td>Hypertext Transfer Protocol</td>
+                    <td>The foundation of data communication for the **World Wide Web**. Used for requesting and receiving web pages.</td>
+                    <td>Accessing any non-secure website.</td>
+                </tr>
+                <tr>
+                    <td>**HTTPS**</td>
+                    <td>Hypertext Transfer Protocol **Secure**</td>
+                    <td>A secure version of HTTP. It uses **TLS/SSL encryption** to secure the connection, protecting sensitive data.</td>
+                    <td>Seeing the padlock icon in your browser.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="ports-protocols">
+        <h1>🚪 Ports & Protocols (Common Port Numbers)</h1>
+        <p>A **port** is a numerical address used by a service or application to receive or send data. When an application communicates over the network, it uses a specific port number so the operating system knows which application the data is intended for.</p>
+
+        <h2>Common Port Numbers (Well-Known Ports 0-1023):</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Port Number</th>
+                    <th>Protocol Name</th>
+                    <th>Associated Application Protocol</th>
+                    <th>Function</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**20, 21**</td>
+                    <td>TCP</td>
+                    <td>FTP</td>
+                    <td>File Transfer Protocol (data/control)</td>
+                </tr>
+                <tr>
+                    <td>**22**</td>
+                    <td>TCP</td>
+                    <td>SSH</td>
+                    <td>Secure Shell (secure remote access)</td>
+                </tr>
+                <tr>
+                    <td>**23**</td>
+                    <td>TCP</td>
+                    <td>Telnet</td>
+                    <td>Unsecured remote access (largely obsolete)</td>
+                </tr>
+                <tr>
+                    <td>**25**</td>
+                    <td>TCP</td>
+                    <td>SMTP</td>
+                    <td>Simple Mail Transfer Protocol (sending email)</td>
+                </tr>
+                <tr>
+                    <td>**53**</td>
+                    <td>UDP/TCP</td>
+                    <td>DNS</td>
+                    <td>Domain Name System (name resolution)</td>
+                </tr>
+                <tr>
+                    <td>**80**</td>
+                    <td>TCP</td>
+                    <td>HTTP</td>
+                    <td>Hypertext Transfer Protocol (web traffic)</td>
+                </tr>
+                <tr>
+                    <td>**110**</td>
+                    <td>TCP</td>
+                    <td>POP3</td>
+                    <td>Post Office Protocol v3 (retrieving email)</td>
+                </tr>
+                <tr>
+                    <td>**143**</td>
+                    <td>TCP</td>
+                    <td>IMAP</td>
+                    <td>Internet Message Access Protocol (retrieving email)</td>
+                </tr>
+                <tr>
+                    <td>**443**</td>
+                    <td>TCP</td>
+                    <td>**HTTPS**</td>
+                    <td>Secure Hypertext Transfer Protocol (secure web traffic)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="routing-basics">
+        <h1>🛣️ Routing Basics</h1>
+        <p>**Routing** is the process of selecting paths in a network along which to send network traffic. This is the primary function of a **Router (OSI Layer 3)**.</p>
+
+        <h3>1. Static Routing</h3>
+        <ul>
+            <li><strong>Description:</strong> The network administrator manually creates and enters every path into the router's **routing table**.</li>
+            <li><strong>Pros:</strong> Very simple, low overhead, high security.</li>
+            <li><strong>Cons:</strong> Not scalable. Requires manual changes if the network topology changes.</li>
+        </ul>
+
+        <h3>2. Dynamic Routing</h3>
+        <ul>
+            <li><strong>Description:</strong> Routers automatically exchange routing information with other routers and adjust their routing tables based on network changes. This uses **Routing Protocols**.</li>
+            <li><strong>Pros:</strong> Highly scalable, automatically adapts to network changes/failures.</li>
+            <li><strong>Cons:</strong> More complex to configure, uses more router resources.</li>
+        </ul>
+
+        <h3>Dynamic Routing Protocols</h3>
+        <p>Dynamic protocols are classified into two types:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Protocols</th>
+                    <th>Scope</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**Interior Gateway Protocols (IGP)**</td>
+                    <td>**RIP**, **OSPF**</td>
+                    <td>Within an **Autonomous System (AS)** (e.g., a single company network).</td>
+                    <td>Used for routing *inside* a network.</td>
+                </tr>
+                <tr>
+                    <td>**Exterior Gateway Protocols (EGP)**</td>
+                    <td>**BGP**</td>
+                    <td>**Between** Autonomous Systems (e.g., between two different Internet Service Providers).</td>
+                    <td>Used for routing traffic across the global Internet.</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul>
+            <li>**RIP (Routing Information Protocol):** An older, distance-vector protocol that uses **hop count** (number of routers) as its metric.</li>
+            <li>**OSPF (Open Shortest Path First):** A widely used, **link-state** protocol. It builds a complete map of the network and uses the shortest path calculation, making it highly efficient.</li>
+            <li>**BGP (Border Gateway Protocol):** The primary protocol that runs the **Internet**. It determines the best path between ISPs.</li>
+        </ul>
+    </section>
+
+    <section id="security-management">
+        <h1>🛡️ Network Security and Management</h1>
+
+        <h3>Firewall</h3>
+        <ul>
+            <li><strong>Function:</strong> A network security device (hardware or software) that monitors and controls incoming and outgoing network traffic based on predetermined **security rules**.</li>
+            <li><strong>How it Works:</strong> It acts as a barrier, inspecting data packets based on criteria like source/destination **IP address** and **port number**.</li>
+        </ul>
+        <pre>
+Firewall Concept (ASCII Diagram)
+Internet <-> Firewall <-> Internal Network
+        </pre>
+
+        <h3>Network Address Translation (NAT)</h3>
+        <ul>
+            <li><strong>Function:</strong> Translates a private (internal) IP address into a public (external) IP address and vice-versa.</li>
+            <li><strong>Purpose:</strong> Allows multiple devices on a private network (like your home LAN) to share a **single public IP address** when connecting to the Internet. This conserves the limited pool of IPv4 public addresses.</li>
+        </ul>
+
+        <h3>Virtual Local Area Network (VLAN)</h3>
+        <ul>
+            <li><strong>Function:</strong> A **logical group** of network devices that appear to be on the same LAN, even if they are geographically separated or connected to different physical switches.</li>
+            <li><strong>Purpose:</strong>
+                <ol>
+                    <li>**Security:** Isolates departments (e.g., Finance from Marketing).</li>
+                    <li>**Performance:** Reduces the size of a **broadcast domain**, improving network speed.</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>Network Security Basics</h3>
+        <p>The core principles of network security are:</p>
+        <ol>
+            <li>**Confidentiality:** Ensuring data is only accessible to authorized users (using encryption).</li>
+            <li>**Integrity:** Ensuring the accuracy and completeness of data (using hashing).</li>
+            <li>**Availability:** Ensuring authorized users have uninterrupted access to resources and data (using redundancy and robust systems).</li>
+        </ol>
+        <p>Common threats include: **Malware**, **Denial-of-Service (DoS) attacks**, **Phishing**, and **Unauthorized Access**. Security measures include **access control lists**, **strong passwords**, and **encryption**.</p>
+    </section>
+
+    <section id="troubleshooting-tools">
+        <h1>🔧 Network Troubleshooting Tools</h1>
+        <p>These command-line tools are essential for any network administrator or user.</p>
+
+        <h3>1. Ping (Packet Internet Groper)</h3>
+        <ul>
+            <li><strong>Purpose:</strong> Tests **reachability** and measures the **round-trip time (latency)** for messages sent from the originating host to a destination computer.</li>
+            <li><strong>Protocol Used:</strong> ICMP (Internet Control Message Protocol).</li>
+            <li><strong>Example:</strong> <code>ping 8.8.8.8</code> (checks connection to Google's DNS server).</li>
+        </ul>
+
+        <h3>2. Traceroute / Tracert</h3>
+        <ul>
+            <li><strong>Purpose:</strong> Displays the **route** (path) that packets take across an IP network and measures transit delays. It reveals every router (hop) the packet passes through.</li>
+            <li><strong>Example:</strong> <code>traceroute www.amazon.com</code> (shows the full journey to the Amazon web server).</li>
+        </ul>
+
+        <h3>3. Nslookup (Name Server Lookup)</h3>
+        <ul>
+            <li><strong>Purpose:</strong> A network utility used to query the **Domain Name System (DNS)** to obtain domain name or IP address mapping or other DNS records.</li>
+            <li><strong>Example:</strong> <code>nslookup facebook.com</code> (returns the IP address associated with that domain).</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; [Year] Your Networking Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
